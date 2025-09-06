@@ -191,3 +191,13 @@ AUTHORS = {
 DISQUS_FILTER = True
 UTTERANCES_FILTER = True
 COMMENTBOX_FILTER = True
+
+USE_CUSTOM_MENU = True
+
+CUSTOM_MENUITEMS = (
+    ('Projects', [
+        ('Research', '/pages/research.html'),
+        ('Open Source', '/pages/open-source.html'),
+    ]),
+    ('About', '/pages/about.html'),
+    )

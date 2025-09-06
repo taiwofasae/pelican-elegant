@@ -78,6 +78,24 @@
                                 <li {% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
                                 {% endfor %}
                                 {% endif %}
+
+                                {% if USE_CUSTOM_MENU %}
+                                {% for name, url in CUSTOM_MENUITEMS %}
+                                {% if url is iterable and url is not string %}
+                                    <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ name }} <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        {% for subname, suburl in url %}
+                                        <li><a href="{{ suburl }}">{{ subname }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                    </li>
+                                {% else %}
+                                    <li><a href="{{ url }}">{{ name }}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+
                                 {% from '_includes/_defaults.html' import TAGS_URL, CATEGORIES_URL, ARCHIVES_URL, SEARCH_URL with context %}
                                 <li {% if page_name == 'categories' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ CATEGORIES_URL }}">Categories</a></li>
                                 <li {% if page_name == 'tags' %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ TAGS_URL }}">Tags</a></li>
